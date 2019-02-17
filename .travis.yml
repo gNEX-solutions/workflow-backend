@@ -10,3 +10,5 @@ notifications:
     - akalanka345@gmail.com
     - pasan.peiris01@gmail.com
     - benuka02@gmail.com
+  on_failure: always
+  on_success: always
