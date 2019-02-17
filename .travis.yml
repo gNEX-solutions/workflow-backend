@@ -3,4 +3,11 @@ sudo: false
 before_install:
   - chmod +x mvnw
 script: mvn clean install
+notifications:
+  slack:
+    on_success: always
+  email:
+    - akalanka345@gmail.com
+    - pasan1486381@gmail.com
+    - benuka02@gmail.com 
 
