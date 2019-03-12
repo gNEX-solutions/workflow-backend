@@ -40,6 +40,10 @@ public class User implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
+    @Column(name = "reset_token")
+    private String resetToken;
+
+
     public Long getId() {
         return id;
     }
@@ -88,4 +92,7 @@ public class User implements Serializable {
         this.updatedAt = updatedAt;
     }
 
+    public String getResetToken() { return resetToken; }
+
+    public void setResetToken(String resetToken) { this.resetToken = resetToken; }
 }
