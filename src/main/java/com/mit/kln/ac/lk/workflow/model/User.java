@@ -69,10 +69,6 @@ public class User implements Serializable, UserDetails {
         this.roles = roles;
     }
 
-    @Column(name = "reset_token")
-    private String resetToken;
-
-
     public Long getId() {
         return id;
     }
@@ -161,7 +157,4 @@ public class User implements Serializable, UserDetails {
     public List<String> getRoles() {
         return this.roles;
     }
-    public String getResetToken() { return resetToken; }
-
-    public void setResetToken(String resetToken) { this.resetToken = resetToken; }
 }

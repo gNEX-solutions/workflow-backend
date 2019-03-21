@@ -11,13 +11,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+   private UserRepository userRepository;
 
     @Override
     public List<User> getAllUsers() {
@@ -43,16 +41,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .orElseThrow(() ->  new ResourceNotFoundException("User", "id", id));
         userRepository.delete(user);
         return "User "+user.getFname()+" Deleted";
-    }
-
-    @Override
-    public Optional findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-
-    @Override
-    public Optional findUserByResetToken(String resetToken) {
-        return userRepository.findByResetToken(resetToken);
     }
 
     @Override
