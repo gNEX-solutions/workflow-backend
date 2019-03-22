@@ -32,7 +32,7 @@ public class DataInitializer implements CommandLineRunner {
         User user1 = new User();
         user1.setFname("Pasan");
         user1.setLname("Peiris");
-        user1.setEmail("pasan@hj.lk");
+        user1.setEmail("akalanka345@gmail.com");
         user1.setPassword(passwordEncoder().encode("pasan"));
         user1.setUsername("pasan");
         List<String> list=new ArrayList<String>();
