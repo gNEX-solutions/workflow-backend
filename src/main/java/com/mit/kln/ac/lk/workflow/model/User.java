@@ -57,6 +57,17 @@ public class User implements Serializable, UserDetails {
     @LastModifiedDate
     private Date updatedAt;
 
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    @Column(name = "reset_token")
+    private String resetToken;
+
     public void setUsername(String username) {
         this.username = username;
     }
