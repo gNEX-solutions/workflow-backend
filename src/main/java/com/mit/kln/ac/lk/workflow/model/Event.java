@@ -9,9 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "events")
@@ -36,8 +34,10 @@ public class Event implements Serializable {
     private String eventStatus;
 
     private String eventLocation;
-    
-//   private EventCoordinatorDetails details[];
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_id")
+    private List<EventCoordinatorDetails> eventCoordinatorDetails = new ArrayList<>();
 
     private String eventParticipants;
 
@@ -164,4 +164,11 @@ public class Event implements Serializable {
         this.eventUpdatedAt = eventUpdatedAt;
     }
 
+    public List<EventCoordinatorDetails> getEventCoordinatorDetails() {
+        return eventCoordinatorDetails;
+    }
+
+    public void setEventCoordinatorDetails(List<EventCoordinatorDetails> eventCoordinatorDetails) {
+        eventCoordinatorDetails = eventCoordinatorDetails;
+    }
 }
