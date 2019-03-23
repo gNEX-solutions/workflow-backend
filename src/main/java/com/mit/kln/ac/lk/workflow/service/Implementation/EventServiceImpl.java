@@ -29,4 +29,10 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Event", "id", id));
     }
+
+    @Override
+    public String createEvent(Event event) {
+        eventRepository.save(event);
+        return "Success - "+event.getEventName()+" created";
+    }
 }

@@ -9,4 +9,6 @@ public interface EventService {
     List<Event> getAllEvents(String month,String year);
 
     Event getEventById(Long id);
+
+    String createEvent(Event event);
 }

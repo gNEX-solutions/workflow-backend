@@ -169,6 +169,6 @@ public class Event implements Serializable {
     }
 
     public void setEventCoordinatorDetails(List<EventCoordinatorDetails> eventCoordinatorDetails) {
-        eventCoordinatorDetails = eventCoordinatorDetails;
+        this.eventCoordinatorDetails = eventCoordinatorDetails;
     }
 }
