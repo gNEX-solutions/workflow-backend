@@ -1,3 +1,7 @@
+/*
+
+
+ */
 package com.mit.kln.ac.lk.workflow.controller;
 
 import com.mit.kln.ac.lk.workflow.model.Event;
@@ -18,14 +22,15 @@ public class EventController {
     private EventService eventService;
 
     //get events related to post request month and year
-    @PostMapping("/events")
+    @RequestMapping(value = "/events", method = RequestMethod.POST, headers = "Accept=application/json")
     public List<Event> allEvents(@RequestBody EventRequest eventRequest) {
 
+        //Here I used EventRequest Model to get and set value passed through JSON request
         return eventService.getAllEvents(eventRequest.getMonth(),eventRequest.getYear());
     }
 
     //get events by id
-    @GetMapping("/events/{id}")
+    @RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
     public Event getEventById(@PathVariable(value = "id") Long id)
     {
 
