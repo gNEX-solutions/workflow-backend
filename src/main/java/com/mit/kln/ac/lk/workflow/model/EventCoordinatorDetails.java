@@ -14,7 +14,7 @@ public class EventCoordinatorDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long userUId;
+    private long coordinatorId;
 
     @ManyToOne
     private Event event;
@@ -29,6 +29,13 @@ public class EventCoordinatorDetails implements Serializable {
 
     }
 
+    public long getCoordinatorUId() {
+        return coordinatorId;
+    }
+
+    public void setCoordinatorUId(long coordinatorId) {
+        this.coordinatorId = coordinatorId;
+    }
 
     public String getImNumber() {
         return imNumber;

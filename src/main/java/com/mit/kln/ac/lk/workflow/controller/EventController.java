@@ -17,10 +17,20 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
+    //get events related to post request month and year
     @PostMapping("/events")
     public List<Event> allEvents(@RequestBody EventRequest eventRequest) {
 
         return eventService.getAllEvents(eventRequest.getMonth(),eventRequest.getYear());
     }
+
+    //get events by id
+    @GetMapping("/events/{id}")
+    public Event getEventById(@PathVariable(value = "id") Long id)
+    {
+
+        return eventService.getEventById(id);
+    }
+
 
 }

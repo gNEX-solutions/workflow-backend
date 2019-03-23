@@ -1,11 +1,10 @@
 package com.mit.kln.ac.lk.workflow.service.Implementation;
 
+import com.mit.kln.ac.lk.workflow.exception.ResourceNotFoundException;
 import com.mit.kln.ac.lk.workflow.model.Event;
-import com.mit.kln.ac.lk.workflow.model.EventRequest;
 import com.mit.kln.ac.lk.workflow.repository.EventRepository;
 import com.mit.kln.ac.lk.workflow.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,5 +22,11 @@ public class EventServiceImpl implements EventService {
         List<Event> eventsList= eventRepository.findByEventDateStartingWith(dateFormat);
         return eventsList;
 
+    }
+
+    @Override
+    public Event getEventById(Long id) {
+        return eventRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Event", "id", id));
     }
 }

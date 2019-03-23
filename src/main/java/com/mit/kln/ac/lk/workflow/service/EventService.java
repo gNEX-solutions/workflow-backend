@@ -7,4 +7,6 @@ import java.util.List;
 public interface EventService {
 
     List<Event> getAllEvents(String month,String year);
+
+    Event getEventById(Long id);
 }
