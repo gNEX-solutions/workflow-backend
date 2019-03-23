@@ -35,4 +35,12 @@ public class EventServiceImpl implements EventService {
         eventRepository.save(event);
         return "Success - "+event.getEventName()+" created";
     }
+
+    @Override
+    public String deleteUser(Long id) {
+        Event event = eventRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Event", "id", id));
+        eventRepository.delete(event);
+        return "Event "+event.getEventName()+" Deleted";
+    }
 }

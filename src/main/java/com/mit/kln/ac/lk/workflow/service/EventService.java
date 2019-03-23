@@ -11,4 +11,6 @@ public interface EventService {
     Event getEventById(Long id);
 
     String createEvent(Event event);
+
+    String deleteUser(Long id);
 }

@@ -47,11 +47,25 @@ public class EventController {
 
     }
 
+    //create event
     @RequestMapping(value = "/eventcreate", method = RequestMethod.POST)
     public String createEvent(@Valid @RequestBody Event event) throws Exception {
 
         try {
             return eventService.createEvent(event);
+        }
+        catch (Exception ex)
+        {
+            return ""+ex;
+        }
+
+    }
+
+    @RequestMapping(value = "/eventdelete/{id}", method = RequestMethod.DELETE)
+    public String removeUser(@PathVariable(value = "id") Long id) throws Exception{
+
+        try {
+            return eventService.deleteUser(id);
         }
         catch (Exception ex)
         {
