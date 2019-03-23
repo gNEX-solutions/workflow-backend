@@ -25,7 +25,7 @@ public class Event implements Serializable {
     private String eventName;
 
     @NotBlank
-    private Date eventDate;
+    private String eventDate;
 
     private Time eventStartTime;
 
@@ -76,11 +76,11 @@ public class Event implements Serializable {
         this.eventName = eventName;
     }
 
-    public Date getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
 

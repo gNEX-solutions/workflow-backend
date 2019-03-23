@@ -20,7 +20,7 @@ public class EventController {
     @PostMapping("/events")
     public List<Event> allEvents(@RequestBody EventRequest eventRequest) {
 
-        return eventService.getAllEvents();
+        return eventService.getAllEvents(eventRequest.getMonth(),eventRequest.getYear());
     }
 
 }

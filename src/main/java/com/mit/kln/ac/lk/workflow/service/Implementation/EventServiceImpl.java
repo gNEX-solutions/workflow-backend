@@ -5,6 +5,7 @@ import com.mit.kln.ac.lk.workflow.model.EventRequest;
 import com.mit.kln.ac.lk.workflow.repository.EventRepository;
 import com.mit.kln.ac.lk.workflow.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,13 +16,12 @@ public class EventServiceImpl implements EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    private EventRequest eventRequest = new EventRequest();
-
     @Override
-    public List<Event> getAllEvents() {
+    public List<Event> getAllEvents(String month,String year) {
 
-        System.out.println("---"+eventRequest.getMonth()+"  -----  "+eventRequest.getYear());
-        List<Event> eventsList= eventRepository.findAll();
+        String dateFormat = year+"-"+month;
+        List<Event> eventsList= eventRepository.findByEventDateStartingWith(dateFormat);
         return eventsList;
+
     }
 }
