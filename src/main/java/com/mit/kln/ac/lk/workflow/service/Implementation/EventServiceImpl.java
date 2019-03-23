@@ -1,3 +1,8 @@
+/*
+Developed by - MAL   @TecOPS-MIT UOK
+Developed in - 2019/03/23
+Last updated in - 2019/03/24
+ */
 package com.mit.kln.ac.lk.workflow.service.Implementation;
 
 import com.mit.kln.ac.lk.workflow.exception.ResourceNotFoundException;
@@ -33,14 +38,21 @@ public class EventServiceImpl implements EventService {
     @Override
     public String createEvent(Event event) {
         eventRepository.save(event);
-        return "Success - "+event.getEventName()+" created";
+        return "Success -  Event  "+event.getEventName()+"  Created";
     }
 
     @Override
-    public String deleteUser(Long id) {
+    public String deleteEvent(Long id) {
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Event", "id", id));
         eventRepository.delete(event);
-        return "Event "+event.getEventName()+" Deleted";
+        return "Success -  Event "+event.getEventName()+" Deleted";
+    }
+
+    @Override
+    public String updateEvent(Event event) {
+
+        eventRepository.save(event);
+        return "Success -  Event  "+event.getEventName()+"  Updated";
     }
 }

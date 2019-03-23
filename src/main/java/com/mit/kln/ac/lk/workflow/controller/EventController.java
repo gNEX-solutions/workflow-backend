@@ -1,3 +1,8 @@
+/*
+Developed by - MAL   @TecOPS-MIT UOK
+Developed in - 2019/03/23
+Last updated in - 2019/03/24
+ */
 package com.mit.kln.ac.lk.workflow.controller;
 
 import com.mit.kln.ac.lk.workflow.model.Event;
@@ -61,17 +66,32 @@ public class EventController {
 
     }
 
+    //delete event
     @RequestMapping(value = "/eventdelete/{id}", method = RequestMethod.DELETE)
-    public String removeUser(@PathVariable(value = "id") Long id) throws Exception{
+    public String removeEvent(@PathVariable(value = "id") Long id) throws Exception{
 
         try {
-            return eventService.deleteUser(id);
+            return eventService.deleteEvent(id);
         }
         catch (Exception ex)
         {
             return ""+ex;
         }
 
+    }
+
+    //update event
+    //Special note - update query need to provide all event data. Otherwise it will make unprovided fields to null
+    //So fetch event data, update necessary and return all event data with updated ones.
+    @RequestMapping(value = "/eventupdate", method = RequestMethod.PUT)
+    public String updateEvent(@Valid @RequestBody Event event) throws Exception {
+        try {
+            return eventService.updateEvent(event);
+        }
+        catch (Exception ex)
+        {
+            return ""+ex;
+        }
     }
 
 

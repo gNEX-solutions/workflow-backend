@@ -1,3 +1,8 @@
+/*
+Developed by - MAL   @TecOPS-MIT UOK
+Developed in - 2019/03/23
+Last updated in - 2019/03/24
+ */
 package com.mit.kln.ac.lk.workflow.service;
 
 import com.mit.kln.ac.lk.workflow.model.Event;
@@ -12,5 +17,7 @@ public interface EventService {
 
     String createEvent(Event event);
 
-    String deleteUser(Long id);
+    String deleteEvent(Long id);
+
+    String updateEvent(Event event);
 }
