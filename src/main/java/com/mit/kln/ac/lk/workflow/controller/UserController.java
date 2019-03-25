@@ -42,18 +42,21 @@ public class UserController {
     //Create New User
     @PostMapping("/user")
     public String createUser(@Valid @RequestBody User user){
+
         return userService.saveUser(user);
     }
 
     //Get Single User
     @GetMapping("/users/{id}")
     public User getUserByEmail(@PathVariable(value = "id") Long id){
+
         return userService.getUserByEmail(id);
     }
 
     //Remove a user
     @DeleteMapping("/users/{id}")
     public String removeUser(@PathVariable(value = "id") Long id){
+
         return userService.deleteUser(id);
     }
 
