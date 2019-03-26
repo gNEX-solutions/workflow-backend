@@ -59,17 +59,4 @@ public class UserController {
 
         return userService.deleteUser(id);
     }
-
-    @GetMapping("/me")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity currentUser(@AuthenticationPrincipal UserDetails userDetails){
-        Map<Object, Object> model = new HashMap<>();
-        model.put("username", userDetails.getUsername());
-        model.put("roles", userDetails.getAuthorities()
-                .stream()
-                .map(a -> ((GrantedAuthority) a).getAuthority())
-                .collect(toList())
-        );
-        return ok(model);
-    }
 }

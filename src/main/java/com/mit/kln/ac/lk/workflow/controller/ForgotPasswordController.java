@@ -4,6 +4,7 @@ import com.mit.kln.ac.lk.workflow.model.User;
 import com.mit.kln.ac.lk.workflow.service.EmailService;
 import com.mit.kln.ac.lk.workflow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,11 @@ public class ForgotPasswordController {
     @Autowired
     private EmailService emailService;
 
-    @Autowired
-    private PasswordEncoder PasswordEncoder;
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
 
     @RequestMapping(value = "/forgot",method = RequestMethod.POST)
     public String processForgotPasswordForm(@RequestParam("email") String userEmail, HttpServletRequest request){
@@ -80,7 +84,7 @@ public class ForgotPasswordController {
 
             User resetUser = user.get();
 
-            resetUser.setPassword(PasswordEncoder.encode(requestParams.get("password")));
+            resetUser.setPassword(passwordEncoder().encode(requestParams.get("password")));
             resetUser.setResetToken(null);
             userService.saveUser(resetUser);
             ReturnMsg = "You have successfully reset your password.";

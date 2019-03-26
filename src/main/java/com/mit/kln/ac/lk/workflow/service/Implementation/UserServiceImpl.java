@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
    private UserRepository userRepository;
@@ -45,11 +45,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return "User "+user.getFname()+" Deleted";
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return this.userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Username: " + username + " not found"));
-    }
+
 
     @Override
     public Optional findUserByEmail(String email) {
