@@ -48,6 +48,7 @@ public class Event implements Serializable {
 
     private String eventBudget;
 
+    @Column(columnDefinition = "TEXT")
     private String eventDescription;
 
     private String eventApprovedStatus;
