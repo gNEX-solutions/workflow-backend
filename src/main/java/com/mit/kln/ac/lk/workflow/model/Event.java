@@ -23,7 +23,7 @@ import java.util.*;
 public class Event implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long eventId;
 
     @NotBlank
@@ -48,6 +48,7 @@ public class Event implements Serializable {
 
     private String eventBudget;
 
+    @Column(columnDefinition = "TEXT")
     private String eventDescription;
 
     private String eventApprovedStatus;
