@@ -16,13 +16,14 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.ResponseEntity.ok;
 
 
 @RestController
-@RequestMapping("/userapi")
+@RequestMapping("/user")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class UserController {
 
@@ -33,7 +34,7 @@ public class UserController {
     private UserService userService;
 
     //Get all Users
-    @GetMapping("/users")
+    @GetMapping("/all")
     public List<User> allUsers(){
 
         return userService.getAllUsers();
@@ -46,17 +47,22 @@ public class UserController {
         return userService.saveUser(user);
     }
 
-    //Get Single User
-    @GetMapping("/users/{id}")
-    public User getUserByEmail(@PathVariable(value = "id") Long id){
+    //Get Single User by email
+    @GetMapping(value="/")
+    public Optional<User> getUserByEmail(@RequestParam("email") String email){
+        return userService.findUserByEmail(email);
+    }
 
-        return userService.getUserByEmail(id);
+    //Update user
+    @PutMapping(value="/{id}")
+    public String updateUser(@PathVariable("id") Long id,@RequestBody User user) {
+        return userService.updateUser(id, user);
     }
 
     //Remove a user
-    @DeleteMapping("/users/{id}")
-    public String removeUser(@PathVariable(value = "id") Long id){
-
-        return userService.deleteUser(id);
+    @DeleteMapping(value="/{id}")
+    public String removeUser(@RequestParam("email") String email){
+        return userService.deleteUser(email);
     }
+
 }

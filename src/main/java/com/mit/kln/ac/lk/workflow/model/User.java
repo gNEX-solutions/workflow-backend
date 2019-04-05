@@ -2,25 +2,16 @@ package com.mit.kln.ac.lk.workflow.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
 
 @Entity
 @Table(name = "users")
@@ -47,6 +38,12 @@ public class User implements Serializable {
     @NotBlank
     private String email;
 
+    @NotBlank
+    private String designation;
+
+    @NotBlank
+    private String status;
+
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
@@ -57,6 +54,9 @@ public class User implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
+    @Column(nullable = false, name = "reset_token")
+    private String resetToken;
+
     public String getResetToken() {
         return resetToken;
     }
@@ -65,15 +65,27 @@ public class User implements Serializable {
         this.resetToken = resetToken;
     }
 
-    @Column(name = "reset_token")
-    private String resetToken;
+
+    public String getUsername() {
+        return this.username;
+    }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
+    public String getPassword() {
+
+        return this.password;
+    }
+
+
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<String> getRoles() {
+        return this.roles;
     }
 
     public void setRoles(List<String> roles) {
@@ -112,6 +124,22 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -131,11 +159,6 @@ public class User implements Serializable {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
-   boolean isEnabled() {
-        return true;
-    }
 
-    public List<String> getRoles() {
-        return this.roles;
-    }
+
 }

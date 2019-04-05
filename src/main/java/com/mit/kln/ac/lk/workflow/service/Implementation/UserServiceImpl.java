@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,20 +34,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByEmail(Long id) {
-        return userRepository.findById(id)
+    public String updateUser(@PathVariable long id, @RequestBody User updateUser) {
+
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+
+        user.setFname(updateUser.getFname());
+        user.setLname(updateUser.getLname());
+        user.setEmail(updateUser.getEmail());
+        user.setDesignation(updateUser.getDesignation());
+        user.setStatus(updateUser.getStatus());
+        user.setUpdatedAt(updateUser.getUpdatedAt());
+        userRepository.save(user);
+        return "User Updated: " + user.getFname() ;
     }
 
     @Override
-    public String deleteUser(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() ->  new ResourceNotFoundException("User", "id", id));
-        userRepository.delete(user);
+    public String deleteUser(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() ->  new ResourceNotFoundException("User", "email", email));
+        user.setStatus("Expired_User");
+        userRepository.save(user);
         return "User "+user.getFname()+" Deleted";
     }
-
-
 
     @Override
     public Optional findUserByEmail(String email) {
