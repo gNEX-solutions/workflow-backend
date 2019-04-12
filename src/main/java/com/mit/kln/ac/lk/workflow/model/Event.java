@@ -5,6 +5,7 @@ Last updated in - 2019/03/24
  */
 package com.mit.kln.ac.lk.workflow.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -66,6 +67,11 @@ public class Event implements Serializable {
     private Date eventUpdatedAt;
 
 
+    
+    public Event() {
+		// TODO Auto-generated constructor stub
+	}
+    
     public long getEventId() {
         return eventId;
     }
@@ -177,4 +183,7 @@ public class Event implements Serializable {
     public void setEventCoordinatorDetails(List<EventCoordinatorDetails> eventCoordinatorDetails) {
         this.eventCoordinatorDetails = eventCoordinatorDetails;
     }
+
+
+    
 }

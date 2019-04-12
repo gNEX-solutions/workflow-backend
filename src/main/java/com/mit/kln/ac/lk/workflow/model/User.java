@@ -57,7 +57,8 @@ public class User implements Serializable {
     @Column(nullable = false, name = "reset_token")
     private String resetToken;
 
-    public String getResetToken() {
+
+	public String getResetToken() {
         return resetToken;
     }
 
