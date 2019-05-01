@@ -34,14 +34,14 @@ public class UserController {
     private UserService userService;
 
     //Get all Users
-    @GetMapping("/all")
+    @GetMapping(value = "/all")
     public List<User> allUsers(){
 
         return userService.getAllUsers();
     }
 
     //Create New User
-    @PostMapping("/newuser")
+    @PostMapping(value = "/newuser")
     public String createUser(@Valid @RequestBody User user){
 
         return userService.saveUser(user);

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EventServiceImpl implements EventService {
+public class EventServiceImpl implements EventService  {
 
     @Autowired
     private EventRepository eventRepository;
@@ -54,5 +54,10 @@ public class EventServiceImpl implements EventService {
 
         eventRepository.save(event);
         return "Success -  Event  "+event.getEventName()+"  Updated";
+    }
+
+    @Override
+    public List<Event> searchByName(String name) {
+      return  eventRepository.findEventsByName(name);
     }
 }

@@ -20,4 +20,6 @@ public interface EventService {
     String deleteEvent(Long id);
 
     String updateEvent(Event event);
+
+    List<Event> searchByName(String name);
 }

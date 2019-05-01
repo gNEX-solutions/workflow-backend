@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.ls.LSException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,7 +25,7 @@ public class EventController {
     private EventService eventService;
 
     //get events related to post request month and year
-    @RequestMapping(value = "/all", method = RequestMethod.POST, headers = "Accept=application/json")
+    @PostMapping(value = "/all", headers = "Accept=application/json")
     public List<Event> allEvents(@RequestBody EventRequest eventRequest) throws Exception {
 
         //Here I used EventRequest Model to get and set value passed through JSON request
@@ -39,7 +40,7 @@ public class EventController {
     }
 
     //get events by id
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public Event getEventById(@PathVariable(value = "id") Long id) throws Exception
     {
         try {
@@ -53,7 +54,7 @@ public class EventController {
     }
 
     //create event
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @PostMapping(value = "/")
     public String createEvent(@Valid @RequestBody Event event) throws Exception {
 
         try {
@@ -67,7 +68,7 @@ public class EventController {
     }
 
     //delete event
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public String removeEvent(@PathVariable(value = "id") Long id) throws Exception{
 
         try {
@@ -83,7 +84,7 @@ public class EventController {
     //update event
     //Special note - update query need to provide all event data. Otherwise it will make unprovided fields to null
     //So fetch event data, update necessary and return all event data with updated ones.
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    @PutMapping(value = "/")
     public String updateEvent(@Valid @RequestBody Event event) throws Exception {
         try {
             return eventService.updateEvent(event);
@@ -92,6 +93,12 @@ public class EventController {
         {
             return ""+ex;
         }
+    }
+
+    @GetMapping(value = "/search")
+    public List<Event> searchByName(@RequestParam String name){
+
+        return eventService.searchByName(name);
     }
 
 
