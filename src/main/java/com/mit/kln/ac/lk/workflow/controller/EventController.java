@@ -25,7 +25,7 @@ public class EventController {
     private EventService eventService;
 
     //get events related to post request month and year
-    @PostMapping(value = "/all", headers = "Accept=application/json")
+    @PostMapping(value = "/filter", headers = "Accept=application/json")
     public List<Event> allEvents(@RequestBody EventRequest eventRequest) throws Exception {
 
         //Here I used EventRequest Model to get and set value passed through JSON request
