@@ -17,14 +17,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/eventapi")
+@RequestMapping("/event")
 public class EventController {
 
     @Autowired
     private EventService eventService;
 
     //get events related to post request month and year
-    @RequestMapping(value = "/events", method = RequestMethod.POST, headers = "Accept=application/json")
+    @RequestMapping(value = "/all", method = RequestMethod.POST, headers = "Accept=application/json")
     public List<Event> allEvents(@RequestBody EventRequest eventRequest) throws Exception {
 
         //Here I used EventRequest Model to get and set value passed through JSON request
@@ -39,7 +39,7 @@ public class EventController {
     }
 
     //get events by id
-    @RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Event getEventById(@PathVariable(value = "id") Long id) throws Exception
     {
         try {
@@ -53,7 +53,7 @@ public class EventController {
     }
 
     //create event
-    @RequestMapping(value = "/eventcreate", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public String createEvent(@Valid @RequestBody Event event) throws Exception {
 
         try {
@@ -67,7 +67,7 @@ public class EventController {
     }
 
     //delete event
-    @RequestMapping(value = "/eventdelete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String removeEvent(@PathVariable(value = "id") Long id) throws Exception{
 
         try {
@@ -83,7 +83,7 @@ public class EventController {
     //update event
     //Special note - update query need to provide all event data. Otherwise it will make unprovided fields to null
     //So fetch event data, update necessary and return all event data with updated ones.
-    @RequestMapping(value = "/eventupdate", method = RequestMethod.PUT)
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
     public String updateEvent(@Valid @RequestBody Event event) throws Exception {
         try {
             return eventService.updateEvent(event);
