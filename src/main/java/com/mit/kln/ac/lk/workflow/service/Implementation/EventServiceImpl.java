@@ -22,8 +22,13 @@ public class EventServiceImpl implements EventService  {
 
     @Override
     public List<Event> getAllEvents(String month,String year) {
+        String dateFormat;
+        if(month==null){
+            dateFormat= year;
+        }else{
+            dateFormat = year+"-"+month;
+        }
 
-        String dateFormat = year+"-"+month;
         List<Event> eventsList= eventRepository.findByEventDateStartingWith(dateFormat);
         return eventsList;
 
