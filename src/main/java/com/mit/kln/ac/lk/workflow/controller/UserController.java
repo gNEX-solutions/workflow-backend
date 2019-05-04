@@ -41,7 +41,7 @@ public class UserController {
     }
 
     //Create New User
-    @PostMapping(value = "/newuser")
+    @PostMapping(value = "/")
     public String createUser(@Valid @RequestBody User user){
 
         return userService.saveUser(user);
@@ -60,7 +60,7 @@ public class UserController {
     }
 
     //Remove a user
-    @DeleteMapping(value="/{id}")
+    @DeleteMapping(value="/")
     public String removeUser(@RequestParam("email") String email){
         return userService.deleteUser(email);
     }
