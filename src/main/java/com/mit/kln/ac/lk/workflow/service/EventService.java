@@ -5,7 +5,7 @@ Last updated in - 2019/03/24
  */
 package com.mit.kln.ac.lk.workflow.service;
 
-import com.mit.kln.ac.lk.workflow.model.Event;
+import com.mit.kln.ac.lk.workflow.model.Event.Event;
 
 import java.util.List;
 

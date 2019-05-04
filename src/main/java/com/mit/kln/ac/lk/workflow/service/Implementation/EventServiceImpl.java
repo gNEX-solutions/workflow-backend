@@ -6,7 +6,7 @@ Last updated in - 2019/03/24
 package com.mit.kln.ac.lk.workflow.service.Implementation;
 
 import com.mit.kln.ac.lk.workflow.exception.ResourceNotFoundException;
-import com.mit.kln.ac.lk.workflow.model.Event;
+import com.mit.kln.ac.lk.workflow.model.Event.Event;
 import com.mit.kln.ac.lk.workflow.repository.EventRepository;
 import com.mit.kln.ac.lk.workflow.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;

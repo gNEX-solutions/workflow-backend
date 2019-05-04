@@ -3,8 +3,9 @@ Developed by - MAL   @TecOPS-MIT UOK
 Developed in - 2019/03/23
 Last updated in - 2019/03/24
  */
-package com.mit.kln.ac.lk.workflow.model;
+package com.mit.kln.ac.lk.workflow.model.Event;
 
+import com.mit.kln.ac.lk.workflow.model.Event.Event;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;

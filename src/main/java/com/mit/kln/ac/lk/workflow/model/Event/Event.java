@@ -3,15 +3,17 @@ Developed by - MAL   @TecOPS-MIT UOK
 Developed in - 2019/03/23
 Last updated in - 2019/03/24
  */
-package com.mit.kln.ac.lk.workflow.model;
+package com.mit.kln.ac.lk.workflow.model.Event;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.mit.kln.ac.lk.workflow.enums.EventStatus;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
 
@@ -35,7 +37,7 @@ public class Event implements Serializable {
 
     private String eventEndTime;
 
-    private String eventStatus;
+    private EventStatus eventStatus;
 
     private String eventLocation;
 
@@ -43,14 +45,13 @@ public class Event implements Serializable {
     @JoinColumn(name = "event_id")
     private List<EventCoordinatorDetails> eventCoordinatorDetails = new ArrayList<>();
 
+
     private String eventParticipants;
 
     private String eventBudget;
 
     @Column(columnDefinition = "TEXT")
     private String eventDescription;
-
-    private String eventApprovedStatus;
 
     // TODO: 3/19/2019 Event attached files - need data type and other details
 
@@ -105,12 +106,31 @@ public class Event implements Serializable {
         this.eventEndTime = eventEndTime;
     }
 
-    public String getEventStatus() {
+    public EventStatus getEventStatus() {
         return eventStatus;
     }
 
     public void setEventStatus(String eventStatus) {
-        this.eventStatus = eventStatus;
+        switch (eventStatus){
+            case "DONE":
+                this.eventStatus=EventStatus.DONE;
+                break;
+            case "PUBLISHED":
+                this.eventStatus=EventStatus.PUBLISHED;
+                break;
+            case  "PENDING":
+                this.eventStatus=EventStatus.PENDING;
+                break;
+            case "CONFIRMED":
+                this.eventStatus=EventStatus.CONFIRMED;
+                break;
+            case "REJECTED":
+                this.eventStatus=EventStatus.REJECTED;
+                break;
+             default:
+                 break;
+        }
+
     }
 
     public String getEventLocation() {
@@ -145,14 +165,6 @@ public class Event implements Serializable {
         this.eventDescription = eventDescription;
     }
 
-    public String getEventApprovedStatus() {
-        return eventApprovedStatus;
-    }
-
-    public void setEventApprovedStatus(String eventApprovedStatus) {
-        this.eventApprovedStatus = eventApprovedStatus;
-    }
-
     public Date getEventCreatedAt() {
         return eventCreatedAt;
     }
@@ -176,4 +188,5 @@ public class Event implements Serializable {
     public void setEventCoordinatorDetails(List<EventCoordinatorDetails> eventCoordinatorDetails) {
         this.eventCoordinatorDetails = eventCoordinatorDetails;
     }
+
 }

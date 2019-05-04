@@ -1,6 +1,6 @@
 package com.mit.kln.ac.lk.workflow.repository.Implementation;
 
-import com.mit.kln.ac.lk.workflow.model.Event;
+import com.mit.kln.ac.lk.workflow.model.Event.Event;
 import com.mit.kln.ac.lk.workflow.repository.EventRepositoryCustom;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.mit.kln.ac.lk.workflow.repository;
 
-import com.mit.kln.ac.lk.workflow.model.User;
+import com.mit.kln.ac.lk.workflow.model.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

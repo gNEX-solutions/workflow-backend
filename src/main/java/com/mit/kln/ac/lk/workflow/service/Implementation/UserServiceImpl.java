@@ -1,13 +1,10 @@
 package com.mit.kln.ac.lk.workflow.service.Implementation;
 
 import com.mit.kln.ac.lk.workflow.exception.ResourceNotFoundException;
-import com.mit.kln.ac.lk.workflow.model.User;
+import com.mit.kln.ac.lk.workflow.model.User.User;
 import com.mit.kln.ac.lk.workflow.repository.UserRepository;
 import com.mit.kln.ac.lk.workflow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

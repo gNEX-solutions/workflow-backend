@@ -1,4 +1,4 @@
-package com.mit.kln.ac.lk.workflow.model;
+package com.mit.kln.ac.lk.workflow.model.User;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

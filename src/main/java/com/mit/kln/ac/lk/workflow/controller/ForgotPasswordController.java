@@ -1,13 +1,11 @@
 package com.mit.kln.ac.lk.workflow.controller;
 
-import com.mit.kln.ac.lk.workflow.model.User;
+import com.mit.kln.ac.lk.workflow.model.User.User;
 import com.mit.kln.ac.lk.workflow.service.EmailService;
 import com.mit.kln.ac.lk.workflow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
