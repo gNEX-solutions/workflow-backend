@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String saveUser(User user) {
+    public String saveUser(@Valid User user) {
+        System.out.println(user);
         userRepository.save(user);
         return "New User "+user.getFname()+" Created";
     }

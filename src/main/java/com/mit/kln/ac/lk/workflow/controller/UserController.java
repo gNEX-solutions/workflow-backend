@@ -42,8 +42,8 @@ public class UserController {
 
     //Create New User
     @PostMapping(value = "/")
-    public String createUser(@Valid @RequestBody User user){
-
+    public String createUser(@RequestBody User user){
+        user.setStatus("Active");
         return userService.saveUser(user);
     }
 

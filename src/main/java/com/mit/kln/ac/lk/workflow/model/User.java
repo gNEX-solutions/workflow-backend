@@ -54,7 +54,7 @@ public class User implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
-    @Column(nullable = false, name = "reset_token")
+    @Column(nullable = true, name = "reset_token")
     private String resetToken;
 
     public String getResetToken() {
