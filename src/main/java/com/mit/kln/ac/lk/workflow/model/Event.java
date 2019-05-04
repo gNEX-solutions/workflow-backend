@@ -13,7 +13,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.*;
 
 @Entity
@@ -32,9 +31,9 @@ public class Event implements Serializable {
     @NotBlank
     private String eventDate;
 
-    private Time eventStartTime;
+    private String eventStartTime;
 
-    private Time eventEndTime;
+    private String eventEndTime;
 
     private String eventStatus;
 
@@ -90,19 +89,19 @@ public class Event implements Serializable {
         this.eventDate = eventDate;
     }
 
-    public Time getEventStartTime() {
+    public String getEventStartTime() {
         return eventStartTime;
     }
 
-    public void setEventStartTime(Time eventStartTime) {
+    public void setEventStartTime(String eventStartTime) {
         this.eventStartTime = eventStartTime;
     }
 
-    public Time getEventEndTime() {
+    public String getEventEndTime() {
         return eventEndTime;
     }
 
-    public void setEventEndTime(Time eventEndTime) {
+    public void setEventEndTime(String eventEndTime) {
         this.eventEndTime = eventEndTime;
     }
 

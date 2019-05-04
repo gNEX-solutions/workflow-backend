@@ -21,7 +21,7 @@ public class EventServiceImpl implements EventService  {
     private EventRepository eventRepository;
 
     @Override
-    public List<Event> getAllEvents(String month,String year) {
+    public List<Event> getAllEvents(String year,String month) {
         String dateFormat;
         if(month==null){
             dateFormat= year;

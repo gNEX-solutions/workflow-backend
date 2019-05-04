@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface EventService {
 
-    List<Event> getAllEvents(String month,String year);
+    List<Event> getAllEvents(String year,String month);
 
     Event getEventById(Long id);
 

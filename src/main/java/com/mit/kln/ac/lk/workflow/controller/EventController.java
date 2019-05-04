@@ -6,13 +6,11 @@ Last updated in - 2019/03/24
 package com.mit.kln.ac.lk.workflow.controller;
 
 import com.mit.kln.ac.lk.workflow.model.Event;
-import com.mit.kln.ac.lk.workflow.model.EventRequest;
 import com.mit.kln.ac.lk.workflow.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.w3c.dom.ls.LSException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,12 +23,11 @@ public class EventController {
     private EventService eventService;
 
     //get events related to post request month and year
-    @PostMapping(value = "/filter", headers = "Accept=application/json")
-    public List<Event> allEvents(@RequestBody EventRequest eventRequest) throws Exception {
+    @GetMapping(value = "/filter", headers = "Accept=application/json")
+    public List<Event> allEvents(@RequestParam String year, @RequestParam(value = "month", required = false) String month) {
 
-        //Here I used EventRequest Model to get and set value passed through JSON request
         try {
-            return eventService.getAllEvents(eventRequest.getMonth(),eventRequest.getYear());
+            return eventService.getAllEvents(year,month);
         }
         catch (Exception ex)
         {
