@@ -5,7 +5,8 @@ Last updated in - 2019/03/24
  */
 package com.mit.kln.ac.lk.workflow.service;
 
-import com.mit.kln.ac.lk.workflow.model.Event.Event;
+import com.mit.kln.ac.lk.workflow.model.Comment;
+import com.mit.kln.ac.lk.workflow.model.Event;
 
 import java.util.List;
 
@@ -22,4 +23,14 @@ public interface EventService {
     String updateEvent(Event event);
 
     List<Event> searchByName(String name);
+    
+    List<Comment> getAllComments();
+
+	Boolean createComment(Comment comment);
+
+	Comment getCommentById(int id);
+
+	Boolean deleteComment(Comment comment);
+
+	List<Comment> getAllCommentsByEvent(String id);
 }
