@@ -17,5 +17,5 @@ public interface UserService {
     String updateUser(@PathVariable long id, @RequestBody User user);
     Optional<User> findUserByEmail(String email);
     Optional<User> findUserByResetToken(String resetToken);
-
+    User getUserByUserName(String userName);
 }

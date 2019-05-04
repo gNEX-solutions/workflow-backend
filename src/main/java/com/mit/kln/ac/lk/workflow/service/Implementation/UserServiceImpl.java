@@ -69,4 +69,10 @@ public class UserServiceImpl implements UserService {
     public Optional findUserByResetToken(String resetToken) {
         return userRepository.findByResetToken(resetToken);
     }
+    
+    @Override
+	public User getUserByUserName(String userName) {
+		
+		return userRepository.findByusername(userName);
+	}
 }
