@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.mit.kln.ac.lk.workflow.model.Comment;
+import com.mit.kln.ac.lk.workflow.model.Event.Comment;
 
 public interface CommentRepository extends CrudRepository<Comment, Integer> {
 

@@ -5,14 +5,14 @@ Last updated in - 2019/03/24
  */
 package com.mit.kln.ac.lk.workflow.service;
 
-import com.mit.kln.ac.lk.workflow.model.Comment;
-import com.mit.kln.ac.lk.workflow.model.Event;
+import com.mit.kln.ac.lk.workflow.model.Event.Comment;
+import com.mit.kln.ac.lk.workflow.model.Event.Event;
 
 import java.util.List;
 
 public interface EventService {
 
-    List<Event> getAllEvents(String year,String month);
+    List<Event> getAllEvents(String year, String month);
 
     Event getEventById(Long id);
 

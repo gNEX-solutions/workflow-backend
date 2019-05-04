@@ -5,8 +5,8 @@ Last updated in - 2019/03/24
  */
 package com.mit.kln.ac.lk.workflow.controller;
 
-import com.mit.kln.ac.lk.workflow.model.Comment;
-import com.mit.kln.ac.lk.workflow.model.Event;
+import com.mit.kln.ac.lk.workflow.model.Event.Comment;
+import com.mit.kln.ac.lk.workflow.model.Event.Event;
 import com.mit.kln.ac.lk.workflow.service.EventService;
 import com.mit.kln.ac.lk.workflow.service.UserService;
 
@@ -32,7 +32,7 @@ public class EventController {
 	// get events related to post request month and year
 	@GetMapping(value = "/filter", headers = "Accept=application/json")
 	public List<Event> allEvents(@RequestParam String year,
-			@RequestParam(value = "month", required = false) String month) {
+                                 @RequestParam(value = "month", required = false) String month) {
 
 		try {
 			return eventService.getAllEvents(year, month);
