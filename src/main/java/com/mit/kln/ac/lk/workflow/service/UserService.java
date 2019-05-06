@@ -20,4 +20,5 @@ public interface UserService {
     Optional<User> findUserByResetToken(String resetToken);
     User getUserByUserName(String userName);
     List<User> getInspectors();
+    boolean validatewithExistingUsers(User user);
 }

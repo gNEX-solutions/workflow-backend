@@ -6,6 +6,7 @@ import com.mit.kln.ac.lk.workflow.exception.ResourceNotFoundException;
 import com.mit.kln.ac.lk.workflow.model.User.User;
 import com.mit.kln.ac.lk.workflow.repository.UserRepository;
 import com.mit.kln.ac.lk.workflow.service.UserService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,25 +31,36 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String saveUser(@Valid User user) {
-        System.out.println(user);
-        userRepository.save(user);
-        return "New User "+user.getFname()+" Created";
+        if(!validatewithExistingUsers(user)){
+            System.out.println(user);
+            userRepository.save(user);
+            return "New User "+user.getFname()+" Created";
+        }else{
+            return "An Active User with the same designation exists ";
+        }
+
     }
 
     @Override
     public String updateUser(@PathVariable long id, @RequestBody User updateUser) {
 
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+        if(!validatewithExistingUsers(updateUser)){
+            User user = userRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
 
-        user.setFname(updateUser.getFname());
-        user.setLname(updateUser.getLname());
-        user.setEmail(updateUser.getEmail());
-        user.setDesignation(updateUser.getDesignation().toString());
-        user.setStatus(updateUser.getStatus().toString());
-        user.setUpdatedAt(updateUser.getUpdatedAt());
-        userRepository.save(user);
-        return "User Updated: " + user.getFname() ;
+            user.setFname(updateUser.getFname());
+            user.setLname(updateUser.getLname());
+            user.setEmail(updateUser.getEmail());
+            user.setDesignation(updateUser.getDesignation().toString());
+            user.setStatus(updateUser.getStatus().toString());
+            user.setUpdatedAt(updateUser.getUpdatedAt());
+            userRepository.save(user);
+            return "User Updated: " + user.getFname() ;
+        }else{
+            return "An Active User with the same designation exists ";
+        }
+
+
     }
 
     @Override
@@ -84,6 +96,22 @@ public class UserServiceImpl implements UserService {
         inspectors.add(userRepository.findInspectors(Designations.PRESIDENT.toString(), UserStatus.ACTIVE.toString()).orElse(null));
 
         return inspectors;
+
+    }
+
+    @Override
+    public boolean validatewithExistingUsers(User user) {
+
+        UserStatus userStatus=user.getStatus();
+        Designations designation=user.getDesignation();
+        if(userStatus== UserStatus.INACTIVE){
+            return false;
+        } else if(designation==Designations.COORDINATOR || designation==Designations.JUNIOR_TREASURER ||
+        designation==Designations.SECRETARY){
+            return false;
+        }
+
+      return userRepository.findInspectors(designation.toString(),UserStatus.ACTIVE.toString()).isPresent();
 
     }
 

@@ -66,6 +66,7 @@ public class EventController {
 	public String createEvent(@Valid @RequestBody Event event) throws Exception {
 
 		try {
+			event.setEventStatus("PENDING");
 			return eventService.createEvent(event);
 		} catch (Exception ex) {
 			return "" + ex;

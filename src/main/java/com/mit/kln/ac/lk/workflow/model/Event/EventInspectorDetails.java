@@ -35,9 +35,6 @@ public class EventInspectorDetails implements Serializable {
             case "APPROVED":
                 this.inspectorStatus=EventInspectedStatus.APPROVED;
                 break;
-            case "REJECTED":
-                this.inspectorStatus=EventInspectedStatus.REJECTED;
-                break;
             default:
                 break;
         }
