@@ -190,7 +190,7 @@ public class EventController {
 						saveComment.setComment(comment.getComment());
 
 						eventService.createComment(saveComment);
-						returnMessage = "Requested event updated Successfully " + LocalDateTime.now();
+						returnMessage = "Requested event comment updated Successfully " + LocalDateTime.now();
 					} else {
 
 						returnMessage = "Event Not Matches " + LocalDateTime.now();
@@ -227,7 +227,7 @@ public class EventController {
 			try {
 				comment = eventService.getCommentById(commentId);
 			} catch (Exception e) {
-				returnMessage = "No Such Comment Available";
+				returnMessage = "No Such Comment Available "+LocalDateTime.now();
 				return returnMessage;
 			}
 
@@ -237,7 +237,7 @@ public class EventController {
 						eventService.deleteComment(comment);
 						returnMessage = "Comment " + commentId + " deleted Successfully " + LocalDateTime.now();
 					} else {
-						returnMessage = "Invalid Event Details";
+						returnMessage = "Invalid Event Details "+LocalDateTime.now();
 					}
 
 				} else {
