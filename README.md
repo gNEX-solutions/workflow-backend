@@ -7,12 +7,12 @@ backend for workflow management system
 **Allowed Inputs**
 
 1. User Designations
-    -HOD
-    -SENIOR_TREASURER
-    -JUNIOR_TREASURER
-    -PRESIDENT
-    -SECRETARY
-    -COORDINATOR
+    - HOD
+    - SENIOR_TREASURER
+    - JUNIOR_TREASURER
+    - PRESIDENT
+    - SECRETARY
+    - COORDINATOR
   
 2. Event Inspectors Status
   - APPROVED
