@@ -10,6 +10,7 @@ import com.mit.kln.ac.lk.workflow.enums.EventStatus;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -37,6 +38,7 @@ public class Event implements Serializable {
 
     private String eventEndTime;
 
+    @Enumerated(EnumType.STRING)
     private EventStatus eventStatus;
 
     private String eventLocation;
@@ -45,6 +47,9 @@ public class Event implements Serializable {
     @JoinColumn(name = "event_id")
     private List<EventCoordinatorDetails> eventCoordinatorDetails = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_id")
+    private List<EventInspectorDetails> eventInspectorDetails = new ArrayList<>();
 
     private String eventParticipants;
 
@@ -187,6 +192,14 @@ public class Event implements Serializable {
 
     public void setEventCoordinatorDetails(List<EventCoordinatorDetails> eventCoordinatorDetails) {
         this.eventCoordinatorDetails = eventCoordinatorDetails;
+    }
+
+    public List<EventInspectorDetails> getEventInspectorDetails() {
+        return eventInspectorDetails;
+    }
+
+    public void setEventInspectorDetails(List<EventInspectorDetails> eventInspectorDetails) {
+        this.eventInspectorDetails = eventInspectorDetails;
     }
 
 }

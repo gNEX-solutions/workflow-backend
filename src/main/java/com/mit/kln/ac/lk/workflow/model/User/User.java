@@ -2,6 +2,8 @@ package com.mit.kln.ac.lk.workflow.model.User;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.mit.kln.ac.lk.workflow.enums.Designations;
+import com.mit.kln.ac.lk.workflow.enums.UserStatus;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -38,11 +40,11 @@ public class User implements Serializable {
     @NotBlank
     private String email;
 
-    @NotBlank
-    private String designation;
+    @Enumerated(EnumType.STRING)
+    private Designations designation;
 
-    @NotBlank
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -124,20 +126,53 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getDesignation() {
+    public Designations getDesignation() {
         return designation;
     }
 
     public void setDesignation(String designation) {
-        this.designation = designation;
+        switch (designation){
+            case "HOD":
+                this.designation=Designations.HOD;
+                break;
+            case "SENIOR_TREASURER":
+                this.designation=Designations.SENIOR_TREASURER;
+                break;
+            case "JUNIOR_TREASURER":
+                this.designation=Designations.JUNIOR_TREASURER;
+                break;
+            case "PRESIDENT":
+                this.designation=Designations.PRESIDENT;
+                break;
+            case "SECRETARY":
+                this.designation=Designations.SECRETARY;
+                break;
+            case "COORDINATOR":
+                this.designation=Designations.COORDINATOR;
+                break;
+             default:
+                 break;
+        }
+
+
     }
 
-    public String getStatus() {
+    public UserStatus getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
-        this.status = status;
+
+        switch (status){
+            case "ACTIVE":
+                this.status=UserStatus.ACTIVE;
+                break;
+            case "INACTIVE":
+                this.status=UserStatus.INACTIVE;
+                break;
+            default:
+                break;
+        }
     }
 
     public Date getCreatedAt() {

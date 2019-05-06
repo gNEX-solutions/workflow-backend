@@ -22,8 +22,8 @@ public class EventCoordinatorDetails implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long coordinatorId;
 
-    @ManyToOne
-    private Event event;
+//    @ManyToOne
+//    private Event event;
 
     @NotBlank
     private String imNumber;

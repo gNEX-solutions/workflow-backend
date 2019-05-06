@@ -33,7 +33,7 @@ public class UserController {
     //Create New User
     @PostMapping(value = "/")
     public String createUser(@RequestBody User user){
-        user.setStatus("Active");
+        user.setStatus("ACTIVE");
         return userService.saveUser(user);
     }
 

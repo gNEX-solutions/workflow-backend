@@ -12,4 +12,6 @@ public interface EventRepositoryCustom {
     List<Event> findEventsByName(String name);
      **/
     List<Event> findEventsByName(String name);
+
+
 }

@@ -7,6 +7,7 @@ package com.mit.kln.ac.lk.workflow.controller;
 
 import com.mit.kln.ac.lk.workflow.model.Event.Comment;
 import com.mit.kln.ac.lk.workflow.model.Event.Event;
+import com.mit.kln.ac.lk.workflow.model.Event.EventOverview.EventOverview;
 import com.mit.kln.ac.lk.workflow.service.EventService;
 import com.mit.kln.ac.lk.workflow.service.UserService;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,13 +31,19 @@ public class EventController {
 	@Autowired
 	private UserService userService;
 
+
 	// get events related to post request month and year
 	@GetMapping(value = "/filter", headers = "Accept=application/json")
-	public List<Event> allEvents(@RequestParam String year,
+	public List<EventOverview> allEvents(@RequestParam String year,
                                  @RequestParam(value = "month", required = false) String month) {
 
 		try {
-			return eventService.getAllEvents(year, month);
+			List<Event> events= eventService.getAllEvents(year, month);
+			List<EventOverview> eventOverviews= new ArrayList<>();
+			for(Event event: events){
+				eventOverviews.add(maptoEventOverview(event));
+			}
+			return eventOverviews;
 		} catch (Exception ex) {
 			return null;
 		}
@@ -44,9 +52,9 @@ public class EventController {
 
 	// get events by id
 	@GetMapping(value = "/{id}")
-	public Event getEventById(@PathVariable(value = "id") Long id) throws Exception {
+	public EventOverview getEventById(@PathVariable(value = "id") Long id) throws Exception {
 		try {
-			return eventService.getEventById(id);
+			return maptoEventOverview(eventService.getEventById(id));
 		} catch (Exception ex) {
 			return null;
 		}
@@ -244,6 +252,27 @@ public class EventController {
 
 
 		return returnMessage;
+
+	}
+
+	public EventOverview maptoEventOverview(Event event){
+		EventOverview eventOverview=new EventOverview();
+		eventOverview.setEventId(event.getEventId());
+		eventOverview.setEventName(event.getEventName());
+		eventOverview.setEventDate(event.getEventDate());
+		eventOverview.setEventStartTime(event.getEventStartTime());
+		eventOverview.setEventEndTime(event.getEventEndTime());
+		eventOverview.setEventStatus(event.getEventStatus());
+		eventOverview.setEventLocation(event.getEventLocation());
+		eventOverview.setEventCoordinatorDetails(event.getEventCoordinatorDetails());
+		eventOverview.setEventInspectorDetails(eventService.mapinspecDetails(event.getEventInspectorDetails()));
+		eventOverview.setEventParticipants(event.getEventParticipants());
+		eventOverview.setEventBudget(event.getEventBudget());
+		eventOverview.setEventDescription(event.getEventDescription());
+		eventOverview.setEventCreatedAt(event.getEventCreatedAt());
+		eventOverview.setEventUpdatedAt(event.getEventUpdatedAt());
+
+		return eventOverview;
 
 	}
 
