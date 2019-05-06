@@ -1,7 +1,6 @@
 # workflow-backend
 backend for workflow management system
-# workflow-backend
-backend for workflow management system
+
 
 
 **Allowed Inputs**
@@ -15,17 +14,17 @@ backend for workflow management system
     - COORDINATOR
   
 2. Event Inspectors Status
-  - APPROVED
-  -REJECTED
-  -PENDING
+    - APPROVED
+    - REJECTED
+    - PENDING
   
 3. Event Status
-  -DONE
-  -PUBLISHED
-  -PENDING
-  -CONFIRMED
-  -REJECTED
+    - DONE
+    - PUBLISHED
+    - PENDING
+    - CONFIRMED
+    - REJECTED
  
 4. User Status
-  -ACTIVE
-  -INACTIVE
+    - ACTIVE
+    - INACTIVE
