@@ -100,9 +100,14 @@ public class EventController {
 	}
 
 	@GetMapping(value = "/search")
-	public List<Event> searchByName(@RequestParam String name) {
+	public List<EventOverview> searchByName(@RequestParam String name) {
 
-		return eventService.searchByName(name);
+		List<Event> events= eventService.searchByName(name);
+		List<EventOverview> eventOverviews= new ArrayList<>();
+		for(Event event: events){
+			eventOverviews.add(maptoEventOverview(event));
+		}
+		return eventOverviews;
 	}
 
 //    Event Comment Section CRUD
