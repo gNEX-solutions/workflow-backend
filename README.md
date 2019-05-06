@@ -30,7 +30,7 @@ backend for workflow management system
     - INACTIVE
     
 
-**DataInitializer class**  will create 3 **_ACTIVE_ hod,senior treasurer and a president**. Therefore __REFRAIN__ from creating more _active_ users with the above mentioned 3 designations.
+**DataInitializer class**  will create 3 **_ACTIVE_ hod,senior treasurer and a president**. 
 
 The system will assign the 3 active hod, senior treasurer and president for new events automatically. 
 
