@@ -16,24 +16,23 @@ public class EventInspectorDetails implements Serializable {
     private long inspecEventId;
 
 
-    private long userid;
-
+    private long userId;
 
     @Enumerated(EnumType.STRING)
-    private EventInspectedStatus inspectorStatus;
+    private EventInspectedStatus status;
 
-    public EventInspectedStatus getInspectorStatus() {
-        return inspectorStatus;
+    public EventInspectedStatus getStatus() {
+        return status;
     }
 
-    public void setInspectorStatus(String inspectorStatus) {
+    public void setStatus(String status) {
 
-        switch (inspectorStatus){
+        switch (status){
             case "PENDING":
-                this.inspectorStatus=EventInspectedStatus.PENDING;
+                this.status =EventInspectedStatus.PENDING;
                 break;
             case "APPROVED":
-                this.inspectorStatus=EventInspectedStatus.APPROVED;
+                this.status =EventInspectedStatus.APPROVED;
                 break;
             default:
                 break;
@@ -49,13 +48,11 @@ public class EventInspectorDetails implements Serializable {
         this.inspecEventId = inspecEventId;
     }
 
-
-
-    public long getUser_id() {
-        return userid;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(long user_id) {
-        this.userid = user_id;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

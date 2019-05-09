@@ -141,8 +141,8 @@ public class EventServiceImpl implements EventService  {
         }
        for (User user: inspectors){
            EventInspectorDetails inspectorDetails= new EventInspectorDetails();
-           inspectorDetails.setInspectorStatus("PENDING");
-           inspectorDetails.setUser_id(user.getId());
+           inspectorDetails.setStatus("PENDING");
+           inspectorDetails.setUserId(user.getId());
            eventInspectorDetails.add(inspectorDetails);
        }
 
@@ -155,10 +155,12 @@ public class EventServiceImpl implements EventService  {
         List<EventInspectorDetailsOverview> eventInspectorDetailsOverview= new ArrayList<>();
         for(EventInspectorDetails e: eventInspectorDetails){
             EventInspectorDetailsOverview eIDO= new EventInspectorDetailsOverview();
-            User user = userRepository.findById(e.getUser_id()).orElse(null);
+            User user = userRepository.findById(e.getUserId()).orElse(null);
+            eIDO.setInspecEventId(e.getInspecEventId());
             eIDO.setName(user.getFname()+" "+user.getLname());
+            eIDO.setUserId(e.getUserId());
             eIDO.setDesignation(user.getDesignation());
-            eIDO.setStatus(e.getInspectorStatus());
+            eIDO.setStatus(e.getStatus());
             eventInspectorDetailsOverview.add(eIDO);
         }
 
