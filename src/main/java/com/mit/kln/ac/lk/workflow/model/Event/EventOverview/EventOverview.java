@@ -15,6 +15,9 @@ public class EventOverview {
     private String eventEndTime;
     private EventStatus eventStatus;
     private String eventLocation;
+
+
+    private String eventOrganizer;
     private List<EventCoordinatorDetails> eventCoordinatorDetails = new ArrayList<>();
     private List<EventInspectorDetailsOverview> eventInspectorDetails = new ArrayList<>();
     private String eventParticipants;
@@ -35,6 +38,13 @@ public class EventOverview {
         return eventName;
     }
 
+    public String getEventOrganizer() {
+        return eventOrganizer;
+    }
+
+    public void setEventOrganizer(String eventOrganizer) {
+        this.eventOrganizer = eventOrganizer;
+    }
     public void setEventName(String eventName) {
         this.eventName = eventName;
     }

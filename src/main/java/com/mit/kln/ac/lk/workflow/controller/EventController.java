@@ -129,6 +129,7 @@ public class EventController {
 
 		// checking for validity of user and event
 
+
 		if (comment.getUserName() != null) {
 			if (userService.getUserByUserName(comment.getUserName()) != null) {
 				if (comment.getEvent() != null) {
@@ -269,6 +270,7 @@ public class EventController {
 		eventOverview.setEventStartTime(event.getEventStartTime());
 		eventOverview.setEventEndTime(event.getEventEndTime());
 		eventOverview.setEventStatus(event.getEventStatus());
+		eventOverview.setEventOrganizer(event.getEventOrganizer());
 		eventOverview.setEventLocation(event.getEventLocation());
 		eventOverview.setEventCoordinatorDetails(event.getEventCoordinatorDetails());
 		eventOverview.setEventInspectorDetails(eventService.mapinspecDetails(event.getEventInspectorDetails()));

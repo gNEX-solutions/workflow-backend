@@ -34,6 +34,9 @@ public class Event implements Serializable {
     @NotBlank
     private String eventDate;
 
+    private String eventOrganizer;
+
+
     private String eventStartTime;
 
     private String eventEndTime;
@@ -89,6 +92,15 @@ public class Event implements Serializable {
 
     public String getEventDate() {
         return eventDate;
+    }
+
+
+    public String getEventOrganizer() {
+        return eventOrganizer;
+    }
+
+    public void setEventOrganizer(String eventOrganizer) {
+        this.eventOrganizer = eventOrganizer;
     }
 
     public void setEventDate(String eventDate) {
