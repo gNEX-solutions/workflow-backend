@@ -2,15 +2,13 @@ language: java
 sudo: false
 before_install:
   - chmod +x mvnw
-script: 
-  - mvn clean install
-  - bash <(curl -s https://codecov.io/bash)
+script: mvn clean install
 notifications:
   slack:
     on_success: always
   email:
     - akalanka345@gmail.com
     - pasan.peiris01@gmail.com
-    - benuka02@gmail.com 
+    - benuka02@gmail.com
   on_failure: always
   on_success: always
