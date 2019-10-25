@@ -5,9 +5,4 @@ before_install:
 script: 
   - mvn clean install
   - bash <(curl -s https://codecov.io/bash)
-notifications:
-  slack:
-    on_success: always
-  email:
-  on_failure: always
-  on_success: always
+
